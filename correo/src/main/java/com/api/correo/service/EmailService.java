@@ -21,38 +21,43 @@ public class EmailService {
 
         helper.setTo(correoDTO.getDestinatario());
         helper.setSubject(correoDTO.getAsunto());
-        // Construir el cuerpo HTML con diseño estilizado
+
+        String imageUrl = "https://res.cloudinary.com/dnwzliif9/image/upload/e_background_removal/e_dropshadow:azimuth_220;elevation_60;spread_20/f_png/v1706807940/lindo-pinguino-volando-globos-ilustracion-vectorial-dibujos-animados-vector-aislado-concepto-amor-animal-estilo-dibujos-animados-plana_138676-2016.jpg_brpk4f.jpg"; // Replace with the actual URL of your image
+
         String contenidoEmail = "¡Hola " + correoDTO.getNombre() + " " + correoDTO.getApellidos() + "!<br/><br/>"
-        + "Bienvenido a Digital, tu destino para servicios increíbles. Estamos emocionados de tenerte con nosotros.<br/><br/>"
-        + "En Digital, ofrecemos una amplia gama de servicios diseñados para hacer tu vida más fácil. Desde productos de alta calidad hasta un servicio al cliente excepcional, estamos aquí para ti.<br/><br/>"
+        + "Bienvenido a TuEmpresa, tu destino para servicios increíbles. Estamos emocionados de tenerte con nosotros.<br/><br/>"
+        + "En TuEmpresa, ofrecemos una amplia gama de servicios diseñados para hacer tu vida más fácil. Desde productos de alta calidad hasta un servicio al cliente excepcional, estamos aquí para ti.<br/><br/>"
         + "Si tienes alguna pregunta o necesitas asistencia, no dudes en ponerte en contacto con nuestro equipo. Estamos aquí para ayudarte.<br/><br/>"
-        + "Gracias por unirte a Digital. ¡Esperamos que disfrutes de la experiencia!<br/><br/>"
+        + "Gracias por unirte a TuEmpresa. ¡Esperamos que disfrutes de la experiencia!<br/><br/>"
+        + "<p style='text-align: center;'><img src='" + imageUrl + "' alt='Welcome Image' style='max-width: 100%; height: auto; margin-bottom: 20px;' /></p>"
         + "Saludos,<br/>"
-        + "El equipo de Digital";
+        + "El equipo de TuEmpresa";
 
         String cuerpoConDiseno = "<html>"
         + "<head>"
+        + "<style>"
+        + "body { font-family: 'Arial', sans-serif; background-color: #f2f2f2; margin: 0; padding: 0; }"
+        + "header { background-color: #7F3B7F; color: #fff; text-align: center; padding: 20px; }"
+        + "h1 { margin: 0; font-size: 36px; }"
+        + ".content { background-color: #FDF9FD; padding: 30px; text-align: justify; border-radius: 8px; box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); color: #333; }"
+        + ".content p { line-height: 1.6; font-size: 16px; margin-bottom: 20px; }"
+        + "footer { font-size: 12px; color: #777; text-align: center; padding: 10px; background-color: #ddd; }"
+        + "</style>"
         + "</head>"
-        + "<body style='font-family: \"Arial\", sans-serif; background-color: #f2f2f2; margin: 0; padding: 0;'>"
-        + "<table width='100%' cellspacing='0' cellpadding='0'>"
-        + "<tr>"
-        + "<td style='background-color: #89FCDB; padding: 20px; text-align: center; color: #fff;'>"
-        + "<h1 style='margin: 0; font-size: 36px;'>¡Bienvenido a Digital!</h1>"
-        + "</td>"
-        + "</tr>"
-        + "<tr>"
-        + "<td style='background-color: #ffffff; padding: 20px; text-align: justify; border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); color: #333;'>"
-        + "<p style='line-height: 1.6; font-size: 16px; margin-bottom: 20px;'>" + contenidoEmail + "</p>"
-        + "</td>"
-        + "</tr>"
-        + "<tr>"
-        + "<td style='font-size: 12px; color: #777; text-align: center; padding: 10px; background-color: #ddd;'>© 2024 Digital | Todos los derechos reservados</td>"
-        + "</tr>"
-        + "</table>"
+        + "<body>"
+        + "<header>"
+        + "<h1>¡Bienvenido a TuEmpresa!</h1>"
+        + "</header>"
+        + "<div class='content'>"
+        + "<p>" + contenidoEmail + "</p>"
+        + "</div>"
+        + "<footer>© 2024 TuEmpresa | Todos los derechos reservados</footer>"
         + "</body>"
         + "</html>";
 
         helper.setText(cuerpoConDiseno, true);
+
+
         javaMailSender.send(mimeMessage);
     }
 }
