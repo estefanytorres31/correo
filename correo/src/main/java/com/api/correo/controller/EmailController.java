@@ -24,11 +24,6 @@ public class EmailController {
             if (correoDTO.getDestinatario() == null || correoDTO.getAsunto() == null || correoDTO.getContenido() == null|| correoDTO.getNombre()==null||correoDTO.getApellidos()==null) {
                 return ResponseEntity.badRequest().body("Todos los campos deben ser proporcionados");
             }
-
-            // Otras validaciones específicas si es necesario
-            // ...
-
-            // Ejemplo: enviar correo
             emailService.enviarCorreo(correoDTO);
 
             return ResponseEntity.ok("Correo enviado con éxito");
